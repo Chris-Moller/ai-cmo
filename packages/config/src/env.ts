@@ -1,13 +1,17 @@
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
+const sharedServerVars = {
+	DATABASE_URL: z.string().url(),
+	REDIS_URL: z.string().url(),
+	NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
+};
+
 export function createApiEnv(runtimeEnv: Record<string, string | undefined> = process.env) {
 	return createEnv({
 		server: {
-			DATABASE_URL: z.string().url(),
-			REDIS_URL: z.string().url(),
+			...sharedServerVars,
 			PORT: z.coerce.number().default(3000),
-			NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
 		},
 		runtimeEnv,
 	});
@@ -15,11 +19,7 @@ export function createApiEnv(runtimeEnv: Record<string, string | undefined> = pr
 
 export function createWorkerEnv(runtimeEnv: Record<string, string | undefined> = process.env) {
 	return createEnv({
-		server: {
-			DATABASE_URL: z.string().url(),
-			REDIS_URL: z.string().url(),
-			NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
-		},
+		server: sharedServerVars,
 		runtimeEnv,
 	});
 }
