@@ -1,0 +1,22 @@
+{
+  "name": "chief-mog-officer",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "test": "turbo test",
+    "format": "biome format --write .",
+    "db:generate": "pnpm --filter @chief-mog/db drizzle-kit generate",
+    "db:migrate": "pnpm --filter @chief-mog/db drizzle-kit migrate",
+    "db:seed": "pnpm --filter @chief-mog/db tsx src/seed.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.0.0",
+    "turbo": "^2.4.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}
