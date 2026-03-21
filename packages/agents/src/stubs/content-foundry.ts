@@ -1,5 +1,6 @@
 import type { IngestResult, AnalysisResult, Opportunity } from '@cmo/types';
 import type { AgentInterface } from '../interface.js';
+import { createMockOpportunity } from './create-opportunity.js';
 
 export const ContentFoundryAgent: AgentInterface = {
   name: 'content-foundry',
@@ -20,15 +21,14 @@ export const ContentFoundryAgent: AgentInterface = {
         'High-performing competitor content focuses on case studies',
         'Email nurture sequences underutilized for lead conversion',
       ],
-      confidence: 0.80,
+      confidence: 0.8,
       metadata: {},
     };
   },
 
   async generateOpportunities(projectId: string): Promise<Opportunity[]> {
-    const now = new Date();
     return [
-      {
+      createMockOpportunity({
         id: 'opp-content-001',
         projectId,
         agentName: 'content-foundry',
@@ -38,11 +38,8 @@ export const ContentFoundryAgent: AgentInterface = {
           'Competitor analysis shows case studies drive the highest engagement. A monthly case study series highlighting customer success stories could improve authority and conversion rates.',
         source: 'content-analysis',
         priority: 'high',
-        status: 'new',
-        createdAt: now,
-        updatedAt: now,
-      },
-      {
+      }),
+      createMockOpportunity({
         id: 'opp-content-002',
         projectId,
         agentName: 'content-foundry',
@@ -52,10 +49,7 @@ export const ContentFoundryAgent: AgentInterface = {
           'Email nurture sequences are underutilized compared to industry benchmarks. Implementing targeted email workflows could increase lead-to-customer conversion by an estimated 20-30%.',
         source: 'content-analysis',
         priority: 'medium',
-        status: 'new',
-        createdAt: now,
-        updatedAt: now,
-      },
+      }),
     ];
   },
 

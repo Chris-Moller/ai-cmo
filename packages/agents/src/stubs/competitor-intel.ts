@@ -1,5 +1,6 @@
 import type { IngestResult, AnalysisResult, Opportunity } from '@cmo/types';
 import type { AgentInterface } from '../interface.js';
+import { createMockOpportunity } from './create-opportunity.js';
 
 export const CompetitorIntelAgent: AgentInterface = {
   name: 'competitor-intel',
@@ -26,9 +27,8 @@ export const CompetitorIntelAgent: AgentInterface = {
   },
 
   async generateOpportunities(projectId: string): Promise<Opportunity[]> {
-    const now = new Date();
     return [
-      {
+      createMockOpportunity({
         id: 'opp-competitor-001',
         projectId,
         agentName: 'competitor-intel',
@@ -38,10 +38,7 @@ export const CompetitorIntelAgent: AgentInterface = {
           'No competitor currently offers real-time market monitoring capabilities. Positioning this as a key differentiator could capture market share in the enterprise segment.',
         source: 'competitor-tracking',
         priority: 'high',
-        status: 'new',
-        createdAt: now,
-        updatedAt: now,
-      },
+      }),
     ];
   },
 

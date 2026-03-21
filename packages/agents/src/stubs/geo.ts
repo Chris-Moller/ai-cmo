@@ -1,5 +1,6 @@
 import type { IngestResult, AnalysisResult, Opportunity } from '@cmo/types';
 import type { AgentInterface } from '../interface.js';
+import { createMockOpportunity } from './create-opportunity.js';
 
 export const GeoAgent: AgentInterface = {
   name: 'geo',
@@ -26,9 +27,8 @@ export const GeoAgent: AgentInterface = {
   },
 
   async generateOpportunities(projectId: string): Promise<Opportunity[]> {
-    const now = new Date();
     return [
-      {
+      createMockOpportunity({
         id: 'opp-geo-001',
         projectId,
         agentName: 'geo',
@@ -38,10 +38,7 @@ export const GeoAgent: AgentInterface = {
           'APAC market adoption is growing 3x faster than EU. Localized content and partnerships in key Southeast Asian markets could accelerate growth.',
         source: 'geo-analysis',
         priority: 'high',
-        status: 'new',
-        createdAt: now,
-        updatedAt: now,
-      },
+      }),
     ];
   },
 

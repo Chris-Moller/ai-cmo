@@ -1,5 +1,6 @@
 import type { IngestResult, AnalysisResult, Opportunity } from '@cmo/types';
 import type { AgentInterface } from '../interface.js';
+import { createMockOpportunity } from './create-opportunity.js';
 
 export const SearchMogAgent: AgentInterface = {
   name: 'search-mog',
@@ -26,9 +27,8 @@ export const SearchMogAgent: AgentInterface = {
   },
 
   async generateOpportunities(projectId: string): Promise<Opportunity[]> {
-    const now = new Date();
     return [
-      {
+      createMockOpportunity({
         id: 'opp-search-001',
         projectId,
         agentName: 'search-mog',
@@ -38,11 +38,8 @@ export const SearchMogAgent: AgentInterface = {
           'Search volume for "competitive intelligence tools" has increased 45% in the last quarter. Creating targeted content could capture early traffic.',
         source: 'google-trends',
         priority: 'high',
-        status: 'new',
-        createdAt: now,
-        updatedAt: now,
-      },
-      {
+      }),
+      createMockOpportunity({
         id: 'opp-search-002',
         projectId,
         agentName: 'search-mog',
@@ -52,10 +49,7 @@ export const SearchMogAgent: AgentInterface = {
           'There is a significant content gap for comprehensive guides on AI-powered marketing automation. Competitors have not yet addressed this topic in depth.',
         source: 'google-trends',
         priority: 'medium',
-        status: 'new',
-        createdAt: now,
-        updatedAt: now,
-      },
+      }),
     ];
   },
 

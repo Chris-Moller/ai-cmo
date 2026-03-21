@@ -1,5 +1,6 @@
 import type { IngestResult, AnalysisResult, Opportunity } from '@cmo/types';
 import type { AgentInterface } from '../interface.js';
+import { createMockOpportunity } from './create-opportunity.js';
 
 export const RedditMogAgent: AgentInterface = {
   name: 'reddit-mog',
@@ -26,9 +27,8 @@ export const RedditMogAgent: AgentInterface = {
   },
 
   async generateOpportunities(projectId: string): Promise<Opportunity[]> {
-    const now = new Date();
     return [
-      {
+      createMockOpportunity({
         id: 'opp-reddit-001',
         projectId,
         agentName: 'reddit-mog',
@@ -38,11 +38,8 @@ export const RedditMogAgent: AgentInterface = {
           'Active discussions in r/startups about AI marketing tools show positive sentiment. Participating with valuable insights could drive awareness and community trust.',
         source: 'reddit',
         priority: 'medium',
-        status: 'new',
-        createdAt: now,
-        updatedAt: now,
-      },
-      {
+      }),
+      createMockOpportunity({
         id: 'opp-reddit-002',
         projectId,
         agentName: 'reddit-mog',
@@ -52,10 +49,7 @@ export const RedditMogAgent: AgentInterface = {
           'Multiple Reddit threads highlight frustration with manual competitive intelligence workflows. Content addressing this pain point would resonate with the target audience.',
         source: 'reddit',
         priority: 'high',
-        status: 'new',
-        createdAt: now,
-        updatedAt: now,
-      },
+      }),
     ];
   },
 
