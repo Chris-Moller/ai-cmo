@@ -1,3 +1,4 @@
+import type { OpportunityStatus } from '@cmo/types';
 import { Header } from '@/components/layout/Header';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -49,7 +50,7 @@ const mockOpportunities = [
   },
 ];
 
-const statusVariant: Record<string, 'default' | 'secondary' | 'warning' | 'info'> = {
+const statusVariant: Record<OpportunityStatus, 'default' | 'secondary' | 'warning' | 'info'> = {
   new: 'default',
   reviewed: 'info',
   actioned: 'secondary',
