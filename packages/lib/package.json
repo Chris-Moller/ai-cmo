@@ -1,0 +1,19 @@
+{
+  "name": "@chief-mog-officer/lib",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "pino": "^9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "typescript": "~5.7.0"
+  }
+}
