@@ -1,0 +1,21 @@
+{
+  "name": "@chief-mog-officer/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.39",
+    "postgres": "^3.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "typescript": "~5.7.0"
+  }
+}
